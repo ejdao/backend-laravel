@@ -25,10 +25,20 @@ class Service
             'message' => $message,
         ], 200);
     }
+    /** new resource created successfully. */
+    public function responseCreated()
+    {
+        return response()->json([], 201);
+    }
     /** The request was successful but does not return any value. */
     public function responseNoContent()
     {
         return response()->json([], 204);
+    }
+    /** Bad request. */
+    public function responseBadRequest()
+    {
+        return response()->json(['message' => 'Bad request'], 400);
     }
     /** The user is not authorized. */
     public function responseUnauthorized()

@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('roleId')->nullable();
+            $table->foreign('roleId')->references('id')->on('roles');
             $table->string('names', 50)->nullable();
             $table->string('lastnames', 50)->nullable();
             $table->string('phonenumber', 20)->nullable();
@@ -29,7 +31,6 @@ return new class extends Migration
             $table->timestamp('updated_at')->nullable();
         });
     }
-
     /**
      * Reverse the migrations.
      *

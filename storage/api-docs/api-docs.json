@@ -15,7 +15,7 @@
                 "tags": [
                     "auth"
                 ],
-                "operationId": "5ccf10f4b81cba45585c4f9c49c55cb4",
+                "operationId": "59e277ccd56ffa5683ef72ffc57b488a",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -57,7 +57,7 @@
                 "tags": [
                     "auth"
                 ],
-                "operationId": "41db95c550eade1c3e8bc14efbf7f95b",
+                "operationId": "a173bf7e1e565a4aa0e4cd66b0a2365e",
                 "responses": {
                     "200": {
                         "description": "success"
@@ -78,13 +78,223 @@
                 "tags": [
                     "auth"
                 ],
-                "operationId": "89fed76797d2b27228883b6fe01b1ace",
+                "operationId": "ec1284f99cf386ed4b2e506bb1e9fe1a",
                 "responses": {
                     "200": {
                         "description": "success"
                     },
                     "default": {
                         "description": "error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/v1/user": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Get all users.",
+                "operationId": "e6b97bdacde48ae8f064b5e217b516c1",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Create a new user.",
+                "operationId": "7e5062eb45b70287f753341abb9f3a11",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "role": {
+                                                "type": "integer"
+                                            },
+                                            "names": {
+                                                "type": "string"
+                                            },
+                                            "lastnames": {
+                                                "type": "string"
+                                            },
+                                            "phonenumber": {
+                                                "type": "string"
+                                            },
+                                            "address": {
+                                                "type": "string"
+                                            },
+                                            "email": {
+                                                "type": "string"
+                                            },
+                                            "password": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "role": 1,
+                                    "names": "user",
+                                    "lastnames": "user",
+                                    "phonenumber": "3205395014",
+                                    "address": "cra 20 #30-30 Barrio El Manglar",
+                                    "email": "user",
+                                    "password": "123"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "successfully created"
+                    },
+                    "400": {
+                        "description": "unsuccess, Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/v1/user/{id}": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Get one user.",
+                "operationId": "48d5e20b71b256f8764eb4c26923c87c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Update a user.",
+                "operationId": "449b5c29c98a69fd9ec767392f69c6aa",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "role": {
+                                                "type": "integer"
+                                            },
+                                            "names": {
+                                                "type": "string"
+                                            },
+                                            "lastnames": {
+                                                "type": "string"
+                                            },
+                                            "phonenumber": {
+                                                "type": "string"
+                                            },
+                                            "address": {
+                                                "type": "string"
+                                            },
+                                            "email": {
+                                                "type": "string"
+                                            },
+                                            "active": {
+                                                "type": "boolean"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "role": 1,
+                                    "names": "user",
+                                    "lastnames": "user",
+                                    "phonenumber": "3205395014",
+                                    "address": "cra 20 #30-30 Barrio El Manglar",
+                                    "email": "user",
+                                    "active": true
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "successfully updated"
+                    },
+                    "400": {
+                        "description": "unsuccess, Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Delete one user.",
+                "operationId": "3da67f4b168e9ad7a06f533ee0e6a881",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successfully deleted"
+                    },
+                    "404": {
+                        "description": "No found"
                     }
                 },
                 "security": [

@@ -18,9 +18,10 @@ class User extends Authenticatable implements JWTSubject
      *
      * @var array
      */
-    protected $table = "users";
+    protected $table = 'users';
     public $timestamps = true;
     protected $fillable = [
+        'roleId',
         'names',
         'lastnames',
         'phonenumber',
@@ -51,7 +52,12 @@ class User extends Authenticatable implements JWTSubject
         return $this->belongsTo(User::class, 'created_by');
     }
 
-    public function getJWTCustomClaims(): array
+    public function role()
+    {
+        return $this->hasOne(Role::class, 'roleId');
+    }
+
+    public function getJWTCustomClaims()
     {
         return [];
     }

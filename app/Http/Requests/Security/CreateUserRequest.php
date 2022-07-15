@@ -3,8 +3,9 @@
 namespace App\Http\Requests\Security;
 
 use App\Http\Requests\Request;
+use Illuminate\Validation\Rule;
 
-class LoginRequest extends Request
+class CreateUserRequest extends Request
 {
 
     /**
@@ -25,8 +26,13 @@ class LoginRequest extends Request
     public function rules()
     {
         return [
-            'email' => 'required',
-            'password' => 'required'
+            'role' => ['required', Rule::in([1, 2])],
+            'names' => 'required|max:50',
+            'lastnames' => 'required|max:50',
+            'phonenumber' => 'required|max:20',
+            'address' => 'required|max:50',
+            'email' => 'required|unique:users|max:50|email',
+            'password' => 'required|max:10',
         ];
     }
 }
