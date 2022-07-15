@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'api',
         'passwords' => 'users',
     ],
 
@@ -36,9 +36,10 @@ return [
     */
 
     'guards' => [
-        'web' => [
-            'driver' => 'session',
+        'api' => [
+            'driver' => 'jwt',
             'provider' => 'users',
+            'hash' => false,
         ],
     ],
 
@@ -62,13 +63,8 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => Src\Infrastructure\Models\Security\User::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
     ],
 
     /*
@@ -86,6 +82,7 @@ return [
     |
     */
 
+    /*
     'passwords' => [
         'users' => [
             'provider' => 'users',
@@ -94,6 +91,7 @@ return [
             'throttle' => 60,
         ],
     ],
+     */
 
     /*
     |--------------------------------------------------------------------------
